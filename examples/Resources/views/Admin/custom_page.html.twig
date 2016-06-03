@@ -1,0 +1,45 @@
+{% extends base_template %}
+
+{% block breadcrumb %}
+    <li>
+        <a href="{{ url('sonata_admin_dashboard') }}">⌂</a>
+    </li>
+    <li class="active"><span>Custom Admin Page</span></li>
+{% endblock %}
+
+{% block title %}Custom Admin Page{% endblock %}
+
+{% block navbar_title %}
+    Custom Admin Page
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="row">
+                <div class="col-md-12 ">
+                    <div class="box box-success">
+                        <div class="box-header">
+                            <h4 class="box-title">
+                                Any Head
+                            </h4>
+                        </div>
+                        <div class="box-body">
+							Any Content
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

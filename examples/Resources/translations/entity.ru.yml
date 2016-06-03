@@ -1,0 +1,22 @@
+filter:
+    label_id:        ID
+    name: Имя
+
+list:
+    label_id:        ID
+    label__action:   Действия
+    name: Имя
+
+form:
+    label_id:        ID
+    name: Имя
+
+show:
+    label_id:        ID
+    name: Имя
+
+dashboard:
+    label_employee: Сущности
+
+breadcrumb:
+    link_employee_list: Список сущностей

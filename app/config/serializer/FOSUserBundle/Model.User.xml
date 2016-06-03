@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serializer>
+    <class name="FOS\UserBundle\Model\User" exclusion-policy="all" xml-root-name="user">
+        <property xml-attribute-map="true" name="username" type="string" expose="true" groups="user_list,user_view"/>
+        <property xml-attribute-map="true" name="email" type="string" expose="true" groups="user_list,user_view"/>
+    </class>
+</serializer>

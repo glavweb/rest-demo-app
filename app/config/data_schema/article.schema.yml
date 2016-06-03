@@ -1,0 +1,16 @@
+schema:
+    class: AppBundle\Entity\Article
+    properties:
+        id: # integer
+        name: # string
+        slug: # string
+        body: # text
+        countEvents: # integer
+        publish: # boolean
+        publishAt: # datetime
+
+        events: # AppBundle\Entity\Event
+            join: left
+            properties:
+                id: # integer
+                name: # string

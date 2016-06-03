@@ -1,0 +1,11 @@
+include:
+    - ../../Template/EventTemplate.yml
+    - ../../Template/TagTemplate.yml
+
+AppBundle\Entity\Tag:
+    tag-1 (extends tag-template):
+        name: Some name # string
+        events: ["@event-1"]
+
+AppBundle\Entity\Event:
+    event-1 (extends event-template):

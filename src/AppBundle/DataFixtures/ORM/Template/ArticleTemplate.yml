@@ -1,0 +1,11 @@
+AppBundle\Entity\Article:
+    article-template (template):
+        type: photo_report # ArticleType(news, photo_report, article)
+        name: Some name # string
+        slug: Some slug # string
+        body: Some body # text
+        countEvents: 416 # integer
+        publish: false # boolean
+        image: Some image # string
+        updatedAt: <(new \DateTime('2016-05-27 20:52'))> # datetime
+        publishAt: <(new \DateTime('2016-05-26 21:02'))> # datetime

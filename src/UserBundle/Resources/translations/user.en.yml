@@ -1,0 +1,70 @@
+filter:
+    label_id: ID
+    label_username: Username
+    label_email: E-mail
+    label_groups: Groups
+    label_enabled: Enabled
+    label_locked: Locked
+
+list:
+    label_username: Username
+    label_email: E-mail
+    label_groups: Groups
+    label_enabled: Enabled
+    label_locked: Locked
+
+form:
+    label_id: ID
+    label_username: Username
+    label_email: E-mail
+    label_groups: Groups
+    label_firstname: Firstname
+    label_lastname: Lastname
+    label_plain_password: Plain password
+    label_enabled: Enabled
+    label_expired: Expired
+    label_locked: Locked
+    label_credentials_expired: Credentials expired
+    label_avatar_preview: Avatar
+    label_avatar_remove: Remove avatar
+    avatar_not_loaded: Not loaded
+
+show:
+    label_id: ID
+    label_username: Username
+    label_email: E-mail
+    label_groups: Groups
+    label_created_at: Created at
+    label_firstname: Firstname
+    label_lastname: Lastname
+    label_plain_password: Plain password
+    label_enabled: Enabled
+    label_expired: Expired
+    label_locked: Locked
+    label_credentials_expired: Credentials expired
+
+dashboard:
+    label_user: Users
+
+breadcrumb:
+    link_user_list: Users
+    link_user_create: Create
+    link_user_edit: Edit
+    link_user_history: History
+
+User: User
+Security: Security
+Additional roles: Additional roles
+
+label_group_user: Users
+
+user:
+    profile: Profile
+    general: General
+
+security:
+    status: Status
+    groups: Groups
+
+additional_roles:
+    additional_roles: Additional roles

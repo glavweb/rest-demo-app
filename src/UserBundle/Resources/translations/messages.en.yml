@@ -1,0 +1,11 @@
+label_group_user: Users
+
+title_user_authentication: Authentication
+
+security:
+    login:
+        username: Username
+        password: Password
+
+user_block_profile: Profile
+user_block_logout: Logout

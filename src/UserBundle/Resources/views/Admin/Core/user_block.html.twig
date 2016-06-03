@@ -1,0 +1,36 @@
+{% block user_block %}
+    {% if app.user %}
+        {% set _logout_uri  = url('user_admin_security_logout') %}
+        {% set _profile_uri = is_granted('USER_EDIT', app.user) ? url('user_edit', {id: app.user.id}) : url('user_show', {id: app.user.id}) %}
+
+        {% if app.user.avatar %}
+            {% set _user_image  = vich_uploader_asset(app.user, 'avatarFile')|imagine_filter('user_avatar_admin') %}
+        {% else %}
+            {% set _user_image  = asset('bundles/user/default_avatar.png') %}
+        {% endif %}
+
+        <li class="user-header bg-light-blue">
+            {% if _user_image %}
+                <img src="{{ _user_image }}" class="img-circle" alt="Avatar" />
+            {% endif %}
+            <p>{{ app.user }}</p>
+        </li>
+
+{#
+    Uncomment to add some information
+        <li class="user-body">
+
+        </li>
+#}
+
+        <li class="user-footer">
+            <div class="pull-left">
+                <a href="{{ _profile_uri }}" class="btn btn-default btn-flat"><i class="fa fa-user"></i> {{ 'user_block_profile'|trans }}</a>
+            </div>
+
+            <div class="pull-right">
+                <a href="{{ _logout_uri }}" class="btn btn-default btn-flat"><i class="fa fa-sign-out fa-fw"></i> {{ 'user_block_logout'|trans }}</a>
+            </div>
+        </li>
+    {% endif %}
+{% endblock %}

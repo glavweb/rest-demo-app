@@ -1,0 +1,51 @@
+app_default:
+    resource: "@AppBundle/Controller/DefaultController.php"
+    type:     annotation
+
+# API's routing
+user_admin:
+    resource: "@UserBundle/Resources/config/routing_admin.yml"
+
+# API's routing
+_api:
+    prefix: /api
+    resource: "@AppBundle/Resources/config/routing_api.yml"
+
+user_api:
+    prefix: /api
+    resource: "@UserBundle/Resources/config/routing_api.yml"
+
+# LiipImagineBundle's routing
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"
+
+# Admin's routing
+admin:
+    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
+    prefix: /admin
+
+_sonata_admin:
+    resource: .
+    type: sonata_admin
+    prefix: /admin
+
+# FOSUserBundle's routing
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+# NelmioApiDocBundle's routing
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
+
+nelmio_api_swagger:
+    resource: "@NelmioApiDocBundle/Resources/config/swagger_routing.yml"
+    prefix: /api-docs
+
+# Remove trailing slash
+remove_trailing_slash:
+    path: /{url}
+    defaults: { _controller: AppBundle:Redirecting:removeTrailingSlash }
+    requirements:
+        url: .*/$
+    methods: [GET]

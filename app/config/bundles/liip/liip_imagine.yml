@@ -1,0 +1,11 @@
+liip_imagine:
+    resolvers:
+        default:
+            web_path: ~
+
+    filter_sets:
+        user_avatar_admin:
+            quality: 90
+            png_compression_level: 9
+            filters:
+                thumbnail: { size: [250, 250], mode: outbound }

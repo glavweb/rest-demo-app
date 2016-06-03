@@ -1,0 +1,3 @@
+sonata_doctrine_orm_admin:
+    audit:
+        force: false

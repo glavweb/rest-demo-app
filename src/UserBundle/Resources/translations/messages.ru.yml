@@ -1,0 +1,11 @@
+label_group_user: Пользователи
+
+title_user_authentication: Вход
+
+security:
+    login:
+        username: Имя пользователя
+        password: Пароль
+
+user_block_profile: Профиль
+user_block_logout: Выход

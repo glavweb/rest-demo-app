@@ -1,0 +1,10 @@
+jms_serializer:
+    handlers:
+        datetime:
+            default_format: "c"
+
+    metadata:
+        directories:
+            FOSUB:
+                namespace_prefix: "FOS\\UserBundle"
+                path: "%kernel.root_dir%/serializer/FOSUserBundle"

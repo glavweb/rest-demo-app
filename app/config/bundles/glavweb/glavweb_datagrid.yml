@@ -1,0 +1,6 @@
+glavweb_datagrid:
+    data_schema:
+        dir: "%kernel.root_dir%/config/data_schema"
+
+    scope:
+        dir: "%kernel.root_dir%/config/scopes"

@@ -1,0 +1,10 @@
+scope:
+    id: # integer
+    name: # string
+    slug: # string
+    body: # text
+    countEvents: # integer
+    publish: # boolean
+    publishAt: # datetime
+    events: # AppBundle\Entity\Event
+        id:

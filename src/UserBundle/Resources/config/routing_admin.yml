@@ -1,0 +1,3 @@
+user_admin_security:
+    resource: "@UserBundle/Controller/AdminSecurityController.php"
+    type:     annotation

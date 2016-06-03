@@ -1,0 +1,26 @@
+sonata_admin:
+    options:
+        title_mode: single_text
+    title: Admin Site
+
+    templates:
+        layout:  sonata_admin_layout.html.twig
+        user_block: UserBundle:Admin:Core/user_block.html.twig
+
+    dashboard:
+        groups:
+            label_group_admin:
+                roles: [ROLE_SONATA_ADMIN]
+
+            label_group_user:
+                roles: [ROLE_SONATA_ADMIN]
+
+    security:
+        handler: sonata.admin.security.handler.role
+        information:
+            EDIT:   [EDIT]
+            LIST:   [LIST]
+            CREATE: [CREATE]
+            VIEW:   [VIEW]
+            DELETE: [DELETE]
+            EXPORT: [EXPORT]

@@ -1,0 +1,13 @@
+fos_rest:
+    routing_loader:
+        default_format: json
+    param_fetcher_listener: force
+    body_converter:
+        enabled: true
+    body_listener:
+        decoders:
+            json: fos_rest.decoder.jsontoform
+        array_normalizer:
+            forms: true
+    view:
+        view_response_listener: force

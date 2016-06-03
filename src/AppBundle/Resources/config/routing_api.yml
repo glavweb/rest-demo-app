@@ -1,0 +1,3 @@
+app_article_api:
+    type:     rest
+    resource: "@AppBundle/Controller/Api/ArticleApiController.php"

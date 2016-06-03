@@ -1,0 +1,11 @@
+include:
+    - ../../Template/EventTemplate.yml
+    - ../../Template/SessionTemplate.yml
+
+AppBundle\Entity\Session:
+    session-1 (extends session-template):
+        name: Some name # string
+        event: "@event-1"
+
+AppBundle\Entity\Event:
+    event-1 (extends event-template):

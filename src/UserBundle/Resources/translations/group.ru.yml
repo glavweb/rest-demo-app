@@ -1,0 +1,26 @@
+filter:
+    label_id: ID
+    label_name: Название
+
+list:
+    label__action: Действие
+    label_id: ID
+    label_name: Название
+    label_roles: Роли
+
+form:
+    label_id: ID
+    label_name: Название
+    label_roles: Роли
+
+dashboard:
+    label_user_group: Группы пользователей
+
+breadcrumb:
+    link_group_list: Список групп
+    link_group_create: Создать
+    link_group_edit: Изменить
+    link_group_history: Изменения группы
+
+Group: Группа
+Security: Безопасность

@@ -1,0 +1,3 @@
+AppBundle\Entity\EventGroup:
+    event-group-template (template):
+        name: Some name # string

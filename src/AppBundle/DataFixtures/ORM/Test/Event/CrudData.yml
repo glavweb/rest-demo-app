@@ -1,0 +1,31 @@
+include:
+    - ../../Template/EventGroupTemplate.yml
+    - ../../Template/TagTemplate.yml
+    - ../../Template/ArticleTemplate.yml
+    - ../../Template/SessionTemplate.yml
+    - ../../Template/EventDetailTemplate.yml
+    - ../../Template/EventTemplate.yml
+
+AppBundle\Entity\Event:
+    event-1 (extends event-template):
+        name: Some name # string
+        eventGroup: "@event-group-1"
+        tags: ["@tag-1"]
+        articles: ["@article-1"]
+        sessions: ["@session-1"]
+        eventDetail: "@event-detail-1"
+
+AppBundle\Entity\EventGroup:
+    event-group-1 (extends event-group-template):
+
+AppBundle\Entity\Tag:
+    tag-1 (extends tag-template):
+
+AppBundle\Entity\Article:
+    article-1 (extends article-template):
+
+AppBundle\Entity\Session:
+    session-1 (extends session-template):
+
+AppBundle\Entity\EventDetail:
+    event-detail-1 (extends event-detail-template):

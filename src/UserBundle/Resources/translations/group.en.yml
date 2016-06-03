@@ -1,0 +1,26 @@
+filter:
+    label_id: ID
+    label_name: Name
+
+list:
+    label__action: Actions
+    label_id: ID
+    label_name: Name
+    label_roles: Roles
+
+form:
+    label_id: ID
+    label_name: Name
+    label_roles: Roles
+
+dashboard:
+    label_user_group: User groups
+
+breadcrumb:
+    link_group_list: Groups
+    link_group_create: Create
+    link_group_edit: Edit
+    link_group_history: History
+
+Group: Group
+Security: Security

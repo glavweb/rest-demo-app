@@ -1,0 +1,70 @@
+filter:
+    label_id: ID
+    label_username: Логин
+    label_email: E-mail
+    label_groups: Группы
+    label_enabled: Активен
+    label_locked: Заблокирован
+
+list:
+    label_username: Логин
+    label_email: E-mail
+    label_groups: Группы
+    label_enabled: Активен
+    label_locked: Заблокирован
+
+form:
+    label_id: ID
+    label_username: Логин
+    label_email: E-mail
+    label_groups: Группы
+    label_firstname: Имя
+    label_lastname: Фамилия
+    label_plain_password: Открытый пароль
+    label_locked: Заблокирован
+    label_expired: Просрочен
+    label_enabled: Активен
+    label_credentials_expired: Пароль устарел
+    label_avatar_preview: Аватар
+    label_avatar_remove: Удалить аватар
+    avatar_not_loaded: Не загружено
+
+show:
+    label_id: ID
+    label_username: Логин
+    label_email: E-mail
+    label_groups: Группы
+    label_created_at: Дата создания
+    label_firstname: Имя
+    label_lastname: Фамилия
+    label_plain_password: Открытый пароль
+    label_locked: Заблокирован
+    label_expired: Просрочен
+    label_enabled: Активен
+    label_credentials_expired: Пароль устарел
+
+dashboard:
+    label_user: Пользователь
+
+breadcrumb:
+    link_user_list: Список пользователей
+    link_user_create: Создать
+    link_user_edit: Изменить
+    link_user_history: Изменения пользователя
+
+User: Пользователи
+Security: Безопасность
+Additional roles: Дополнительные роли
+
+label_group_user: Пользователи
+
+user:
+    profile: Профиль
+    general: Основные настройки
+
+security:
+    status: Статус
+    groups: Группы
+
+additional_roles:
+    additional_roles: Дополнительные роли

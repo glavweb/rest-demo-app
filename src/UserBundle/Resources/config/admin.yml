@@ -1,0 +1,17 @@
+services:
+    user:
+        class: UserBundle\Admin\UserAdmin
+        arguments: [~, UserBundle\Entity\User, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: label_group_user, label: dashboard.label_user, label_translator_strategy: "sonata.admin.label.strategy.underscore"}
+        calls:
+            - [setTranslationDomain, ["user"]]
+            - [setUserManager, ["@fos_user.user_manager"]]
+
+    group:
+        class: UserBundle\Admin\GroupAdmin
+        arguments: [~, UserBundle\Entity\Group, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: label_group_user, label: dashboard.label_user_group, label_translator_strategy: "sonata.admin.label.strategy.underscore"}
+        calls:
+            - [setTranslationDomain, ["group"]]

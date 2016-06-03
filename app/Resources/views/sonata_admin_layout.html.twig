@@ -1,0 +1,36 @@
+{% extends 'SonataAdminBundle::standard_layout.html.twig' %}
+
+{% block meta_tags %}
+    <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}"/>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <style>
+        /* login */
+        .login-box-body .icheckbox_square-blue {
+            margin-left: 0 !important;
+        }
+
+        .login-box-body .icheck label {
+            font-weight: normal;
+        }
+
+        /* list */
+        .sonata-ba-list-field-header-batch {
+            width: 39px;
+        }
+    </style>
+{% endblock %}
+
+{% block side_bar_after_nav %}
+    <p class="text-center small" style="border-top: 1px solid #444444; padding-top: 10px">
+        <a href="{{ made_in_link }}" rel="noreferrer" target="_blank">{{ "made_in"|trans([], 'SonataAdminBundle') }}</a></p>
+{% endblock %}
+

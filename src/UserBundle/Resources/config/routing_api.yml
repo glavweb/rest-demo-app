@@ -1,0 +1,3 @@
+user_user_api:
+    type:     rest
+    resource: "@UserBundle/Controller/Api/SecurityApiController.php"

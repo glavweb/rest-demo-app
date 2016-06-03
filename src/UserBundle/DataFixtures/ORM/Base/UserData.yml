@@ -1,0 +1,9 @@
+UserBundle\Entity\User:
+    user-admin:
+        username: admin
+        firstname: John
+        lastname: Doe
+        email: john-doe@testmail.com
+        plainPassword: qwerty
+        enabled: true
+        roles: [ROLE_SUPER_ADMIN]

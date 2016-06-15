@@ -1,0 +1,11 @@
+include:
+    - ../../Template/MovieTemplate.yml
+    - ../../Template/MovieCommentTemplate.yml
+    - ../../Template/ImageTemplate.yml
+
+AppBundle\Entity\Image:
+    image-1 (extends image-template):
+        name: Some name # string
+        image: <test_image('jpeg', 'web\test\uploads\images', 'test_image.jpg')> # string
+        updatedAt: <(new \DateTime('2016-06-09 09:18'))> # datetime
+        author: "@user-1"

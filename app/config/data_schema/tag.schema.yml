@@ -1,0 +1,13 @@
+schema:
+    class: AppBundle\Entity\Tag
+    db_driver: orm
+    glavweb_security: false
+    properties:
+        id: # integer
+        name: # string
+
+        movies: # AppBundle\Entity\Movie
+            join: left
+            properties:
+                id: # integer
+                name: # string

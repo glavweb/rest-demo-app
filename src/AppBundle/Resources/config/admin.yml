@@ -1,1 +1,91 @@
 services:
+    movie:
+        class: AppBundle\Admin\MovieAdmin
+        arguments: [~, AppBundle\Entity\Movie, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: label_group_admin, label: dashboard.label_movie, label_translator_strategy: "sonata.admin.label.strategy.underscore"}
+        calls:
+            - [ setTranslationDomain, ["movie"]]
+            - [ addChild, ["@movie_child_session"]]
+            - [ addChild, ["@movie_child_comment"]]
+
+    movie_child_session:
+        class: AppBundle\Admin\Movie\MovieSessionAdmin
+        arguments: [~, AppBundle\Entity\MovieSession, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: none, label: dashboard.label_movie_session, label_translator_strategy: "sonata.admin.label.strategy.underscore"}
+        calls:
+            - [ setTranslationDomain, ["movie_session"]]
+
+    movie_child_comment:
+        class: AppBundle\Admin\Movie\MovieCommentAdmin
+        arguments: [~, AppBundle\Entity\MovieComment, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: none, label: dashboard.label_movie_comment, label_translator_strategy: "sonata.admin.label.strategy.underscore"}
+        calls:
+            - [ setTranslationDomain, ["movie_comment"]]
+
+    movie_detail:
+        class: AppBundle\Admin\MovieDetailAdmin
+        arguments: [~, AppBundle\Entity\MovieDetail, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: none, label: dashboard.label_movie_detail, label_translator_strategy: "sonata.admin.label.strategy.underscore"}
+        calls:
+            - [ setTranslationDomain, ["movie_detail"]]
+
+    movie_comment:
+        class: AppBundle\Admin\MovieCommentAdmin
+        arguments: [~, AppBundle\Entity\MovieComment, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: label_group_admin, label: dashboard.label_movie_comment, label_translator_strategy: "sonata.admin.label.strategy.underscore"}
+        calls:
+            - [ setTranslationDomain, ["movie_comment"]]
+            - [ addChild, ["@movie_comment_image"]]
+
+    movie_comment_image:
+        class: AppBundle\Admin\MovieComment\MovieCommentImageAdmin
+        arguments: [~, AppBundle\Entity\Image, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: none, label: dashboard.label_image, label_translator_strategy: "sonata.admin.label.strategy.underscore"}
+        calls:
+            - [ setTranslationDomain, ["image"]]
+
+    movie_group:
+        class: AppBundle\Admin\MovieGroupAdmin
+        arguments: [~, AppBundle\Entity\MovieGroup, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: label_group_admin, label: dashboard.label_movie_group, label_translator_strategy: "sonata.admin.label.strategy.underscore"}
+        calls:
+            - [ setTranslationDomain, ["movie_group"]]
+
+    movie_session:
+        class: AppBundle\Admin\MovieSessionAdmin
+        arguments: [~, AppBundle\Entity\MovieSession, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: label_group_admin, label: dashboard.label_movie_session, label_translator_strategy: "sonata.admin.label.strategy.underscore"}
+        calls:
+            - [ setTranslationDomain, ["movie_session"]]
+
+    article:
+        class: AppBundle\Admin\ArticleAdmin
+        arguments: [~, AppBundle\Entity\Article, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: label_group_admin, label: dashboard.label_article, label_translator_strategy: "sonata.admin.label.strategy.underscore"}
+        calls:
+            - [ setTranslationDomain, ["article"]]
+
+    image:
+        class: AppBundle\Admin\ImageAdmin
+        arguments: [~, AppBundle\Entity\Image, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: label_group_admin, label: dashboard.label_image, label_translator_strategy: "sonata.admin.label.strategy.underscore"}
+        calls:
+            - [ setTranslationDomain, ["image"]]
+
+    tag:
+        class: AppBundle\Admin\TagAdmin
+        arguments: [~, AppBundle\Entity\Tag, SonataAdminBundle:CRUD]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: label_group_admin, label: dashboard.label_tag, label_translator_strategy: "sonata.admin.label.strategy.underscore"}
+        calls:
+            - [ setTranslationDomain, ["tag"]]

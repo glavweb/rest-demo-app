@@ -1,3 +1,0 @@
-AppBundle\Entity\Event:
-    event-template (template):
-        name: Some name # string

@@ -1,1 +1,4 @@
 services:
+    api_token_authenticator:
+        class:     UserBundle\Security\Authorization\ApiTokenAuthenticator
+        arguments: ["@doctrine"]

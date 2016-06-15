@@ -1,0 +1,20 @@
+filter:
+    label_name: Name
+    label_movie: Movie
+
+list:
+    label__action: Action
+    label_name: Name
+    label_movie: Movie
+
+form:
+    label_name: Name
+    label_movie: Movie
+
+dashboard:
+    label_movie_session: Movie Sessions
+
+breadcrumb:
+    link_movie_session_list: Movie Sessions
+    link_movie_session_create: Create
+    link_movie_session_delete: Delete

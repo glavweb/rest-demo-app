@@ -1,0 +1,32 @@
+filter:
+    label_type: Type
+    label_name: Name
+    label_body: Body
+    label_publish: Is publish
+    label_publish_at: Publish At
+    label_movies: movies
+
+list:
+    label__action: Action
+    label_type: Type
+    label_name: Name
+    label_body: Body
+    label_publish: Is publish
+    label_publish_at: Publish At
+    label_movies: movies
+
+form:
+    label_type: Type
+    label_name: Name
+    label_body: Body
+    label_publish: Is publish
+    label_publish_at: Publish At
+    label_movies: movies
+
+dashboard:
+    label_article: Articles
+
+breadcrumb:
+    link_article_list: Articles
+    link_article_create: Create
+    link_article_delete: Delete

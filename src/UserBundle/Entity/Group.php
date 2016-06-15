@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the "rest demo app" package.
+ *
+ * (c) GLAVWEB <info@glavweb.ru>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace UserBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -8,7 +17,8 @@ use FOS\UserBundle\Model\Group as BaseGroup;
 
 /**
  * Class Group
- * @package UserBundle\Entity
+ *
+ * @author Andrey Nilov <nilov@glavweb.ru>
  *
  * @ORM\Entity
  * @ORM\Table(name="user_groups")
@@ -18,7 +28,7 @@ class Group extends BaseGroup
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer", options={"comment": "ID группы"})
+     * @ORM\Column(name="id", type="integer", options={"comment": "Group ID"})
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */

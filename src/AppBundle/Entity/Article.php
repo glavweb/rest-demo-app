@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Glavweb RestDemoBundle package.
+ * This file is part of the "rest demo app" package.
  *
- * (c) Andrey Nilov <nilov@glavweb.ru>
+ * (c) GLAVWEB <info@glavweb.ru>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -14,28 +14,26 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Fresh\DoctrineEnumBundle\Validator\Constraints\Enum as EnumAssert;
+use Glavweb\SecurityBundle\Mapping\Annotation as GlavwebSecurity;
+use Glavweb\RestBundle\Mapping\Annotation as RestExtra;
 use Symfony\Component\Validator\Constraints as Assert;
-use Glavweb\RestBundle\Mapping\Annotation\Rest;
-use Symfony\Component\HttpFoundation\File\File;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Article
  *
  * @author Andrey Nilov <nilov@glavweb.ru>
- * @package Glavweb\RestDemoBundle
  *
  * @ORM\Table(name="articles")
  * @ORM\Entity
- * @Vich\Uploadable
  *
- * @Rest(
- *     methods={"list", "view", "post", "put", "patch", "delete"},
- *     enums={"type"},
- *     files={"image"},
- *     associations={
- *         "events"={"list", "post", "link", "unlink"}
- *     }
+ * @GlavwebSecurity\Access(
+ *     name = "Article",
+ *     baseRole="ROLE_ARTICLE_%s",
+ * )
+ *
+ * @RestExtra\Rest(
+ *     methods={"list", "view"},
+ *     enums={"type"}
  * )
  */
 class Article
@@ -43,7 +41,7 @@ class Article
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="integer", options={"comment": "Article ID"})
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -61,7 +59,7 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string")
+     * @ORM\Column(name="name", type="string", options={"comment": "Name"})
      * @Assert\NotBlank
      */
     private $name;
@@ -69,97 +67,45 @@ class Article
     /**
      * @var string
      *
-     * @ORM\Column(name="slug", type="string")
-     * @Assert\NotBlank
-     */
-    private $slug;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="body", type="text", nullable=true)
+     * @ORM\Column(name="body", type="text", nullable=true, options={"comment": "Body"})
      */
     private $body;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="count_events", type="integer", nullable=true)
-     */
-    private $countEvents;
-
-    /**
      * @var boolean
      *
-     * @ORM\Column(name="is_publish", type="boolean")
+     * @ORM\Column(name="is_publish", type="boolean", options={"comment": "Is publish"})
      */
     private $publish = false;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="image", type="string", length=255, nullable=true, options={"comment": "Image"})
-     */
-    private $image;
-
-    /**
-     * @Vich\UploadableField(mapping="article_image", fileNameProperty="image")
-     * @Assert\File(maxSize="4000000")
-     * @Assert\Image(
-     *     mimeTypes = {"image/jpeg", "image/jpg", "image/png", "image/gif"}
-     * )
-     *
-     * @var File
-     */
-    private $imageFile;
-
-    /**
      * @var \DateTime
      *
-     * @ORM\Column(type="datetime", name="updated_at", nullable=true, options={"comment": "Updated at"})
-     */
-    private $updatedAt = null;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="publish_at", type="datetime", nullable=true)
+     * @ORM\Column(name="publish_at", type="datetime", nullable=true, options={"comment": "Publish At"})
      */
     private $publishAt;
 
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="Event", inversedBy="articles")
+     * @ORM\ManyToMany(targetEntity="Movie", inversedBy="articles")
      */
-    private $events;
+    private $movies;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->events = new ArrayCollection();
+        $this->movies = new ArrayCollection();
     }
 
     /**
-     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
+     * @return string
      */
-    public function setImageFile(File $file = null)
+    public function __toString()
     {
-        $this->imageFile = $file;
-
-        if ($file) {
-            $this->updatedAt = new \DateTime('now');
-        }
-    }
-
-    /**
-     * @return File
-     */
-    public function getImageFile()
-    {
-        return $this->imageFile;
+        return $this->getName() ?: 'n/a';
     }
 
     /**
@@ -221,30 +167,6 @@ class Article
     }
 
     /**
-     * Set slug
-     *
-     * @param string $slug
-     *
-     * @return Article
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-    /**
      * Set body
      *
      * @param string $body
@@ -269,22 +191,8 @@ class Article
     }
 
     /**
-     * @param int $countEvents
-     */
-    public function setCountEvents($countEvents)
-    {
-        $this->countEvents = $countEvents;
-    }
-
-    /**
-     * @return int
-     */
-    public function getCountEvents()
-    {
-        return $this->countEvents;
-    }
-
-    /**
+     * Set publish
+     *
      * @param boolean $publish
      *
      * @return Article
@@ -297,62 +205,18 @@ class Article
     }
 
     /**
+     * Get publish
+     *
      * @return boolean
      */
-    public function isPublish()
+    public function getPublish()
     {
         return $this->publish;
     }
 
     /**
-     * Set image
+     * Set publishAt
      *
-     * @param string $image
-     *
-     * @return Article
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return string
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * Set updatedAt
-     *
-     * @param \DateTime $updatedAt
-     *
-     * @return Article
-     */
-    public function setUpdatedAt($updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * Get updatedAt
-     *
-     * @return \DateTime
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    /**
      * @param \DateTime $publishAt
      *
      * @return Article
@@ -365,6 +229,8 @@ class Article
     }
 
     /**
+     * Get publishAt
+     *
      * @return \DateTime
      */
     public function getPublishAt()
@@ -373,36 +239,36 @@ class Article
     }
 
     /**
-     * Add event
+     * Add movie
      *
-     * @param Event $event
+     * @param Movie $movie
      *
      * @return Article
      */
-    public function addEvent(Event $event)
+    public function addMovie(Movie $movie)
     {
-        $this->events[] = $event;
+        $this->movies[] = $movie;
 
         return $this;
     }
 
     /**
-     * Remove event
+     * Remove movie
      *
-     * @param Event $event
+     * @param Movie $movie
      */
-    public function removeEvent(Event $event)
+    public function removeMovie(Movie $movie)
     {
-        $this->events->removeElement($event);
+        $this->movies->removeElement($movie);
     }
 
     /**
-     * Get events
+     * Get movies
      *
      * @return ArrayCollection
      */
-    public function getEvents()
+    public function getMovies()
     {
-        return $this->events;
+        return $this->movies;
     }
 }

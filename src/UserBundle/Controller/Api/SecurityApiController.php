@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the "rest demo app" package.
+ *
+ * (c) GLAVWEB <info@glavweb.ru>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace UserBundle\Controller\Api;
 
 use Doctrine\ORM\EntityRepository;
@@ -15,7 +24,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class SecurityApiController
- * @package UserBundle\Controller\Api
+ *
+ * @author Andrey Nilov <nilov@glavweb.ru>
  * 
  * @Rest\NamePrefix("api_user_security_")
  */
@@ -39,7 +49,7 @@ class SecurityApiController extends GlavwebRestController
      *     "_format": "json|xml"
      * })
      *
-     * @Rest\RequestParam(name="username", requirements="\w+", nullable=false, description="Username")
+     * @Rest\RequestParam(name="username", requirements="[\w\-]+", nullable=false, description="Username")
      * @Rest\RequestParam(name="password",                     nullable=false, description="Password")
      *
      * @Rest\View(serializerEnableMaxDepthChecks=true)

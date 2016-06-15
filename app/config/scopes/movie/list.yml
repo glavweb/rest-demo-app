@@ -1,0 +1,9 @@
+scope:
+    id: # integer
+    name: # string
+    group: # AppBundle\Entity\MovieGroup
+        id:
+        name:
+    tags: # AppBundle\Entity\Tag
+        id:
+        name:

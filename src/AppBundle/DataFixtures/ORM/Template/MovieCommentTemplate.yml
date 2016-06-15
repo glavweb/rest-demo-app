@@ -1,0 +1,5 @@
+AppBundle\Entity\MovieComment:
+    movie-comment-template (template):
+        body: Some body # text
+        publish: true # boolean
+        createdAt: <(new \DateTime('2016-06-09 17:33'))> # datetime

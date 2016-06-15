@@ -1,0 +1,12 @@
+include:
+    - ../../Template/MovieTemplate.yml
+    - ../../Template/MovieGroupTemplate.yml
+
+AppBundle\Entity\MovieGroup:
+    movie-group-1 (extends movie-group-template):
+        name: Some name # string
+        movies: ["@movie-1"]
+
+AppBundle\Entity\Movie:
+    movie-1 (extends movie-template):
+        group: "@movie-group-1"

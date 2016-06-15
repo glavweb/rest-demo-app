@@ -1,0 +1,63 @@
+schema:
+    class: AppBundle\Entity\Movie
+    db_driver: orm
+    properties:
+        id: # integer
+        name: # string
+
+        group: # AppBundle\Entity\MovieGroup
+            join: left
+            properties:
+                id: # integer
+                name: # string
+
+        tags: # AppBundle\Entity\Tag
+            join: left
+            properties:
+                id: # integer
+                name: # string
+
+        articles: # AppBundle\Entity\Article
+            conditions: ["{{alias}}.publish = true"]
+            join: none
+            properties:
+                id: # integer
+                type: # ArticleType
+                name: # string
+                publish: # boolean
+                publishAt: # datetime
+
+        sessions: # AppBundle\Entity\MovieSession
+            join: none
+            properties:
+                id: # integer
+                name: # string
+
+        comments: # AppBundle\Entity\MovieComment
+            join: left
+            properties:
+                id: # integer
+                body: # text
+                publish: # boolean
+                createdAt: # datetime
+
+                author: # UserBundle\Entity\User
+                    join: left
+                    properties:
+                        id:
+                        username:
+                        lastname:
+                        firstname:
+
+                images: # AppBundle\Entity\Image
+                    join: left
+                    properties:
+                        id:
+                        name:
+                        image:
+
+        detail: # AppBundle\Entity\MovieDetail
+            join: left
+            properties:
+                id: # integer
+                body: # text

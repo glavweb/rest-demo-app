@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the FOSUserBundle package.
+ * This file is part of the "rest demo app" package.
  *
- * (c) FriendsOfSymfony <http://friendsofsymfony.github.com/>
+ * (c) GLAVWEB <info@glavweb.ru>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -22,7 +22,7 @@ use Symfony\Component\Security\Core\Security;
 /**
  * Class AdminSecurityController
  *
- * @package UserBundle\Controller
+ * @author Andrey Nilov <nilov@glavweb.ru>
  */
 class AdminSecurityController extends Controller
 {

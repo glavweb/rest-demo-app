@@ -1,10 +1,19 @@
 <?php
 
+/*
+ * This file is part of the "rest demo app" package.
+ *
+ * (c) GLAVWEB <info@glavweb.ru>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace UserBundle\Admin;
 
 use FOS\UserBundle\Model\UserManagerInterface;
 use Glavweb\CoreBundle\Form\Type\FormStaticControlRawType;
-use Glavweb\RestBundle\Form\SecurityRolesType;
+use Glavweb\SecurityBundle\Form\SecurityRolesType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -15,7 +24,8 @@ use UserBundle\Entity\User;
 
 /**
  * Class UserAdmin
- * @package UserBundle\Admin
+ *
+ * @author Andrey Nilov <nilov@glavweb.ru>
  */
 class UserAdmin extends AbstractAdmin
 {
@@ -56,15 +66,6 @@ class UserAdmin extends AbstractAdmin
      * @var array
      */
     protected $perPageOptions = [20, 40, 60, 120, 180];
-
-    /**
-     * @var array
-     */
-    protected $listModes = [
-        'list' => [
-            'class' => 'fa fa-list fa-fw',
-        ]
-    ];
 
     /**
      * @var UserManagerInterface

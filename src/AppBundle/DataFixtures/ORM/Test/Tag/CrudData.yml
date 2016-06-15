@@ -1,11 +1,12 @@
 include:
-    - ../../Template/EventTemplate.yml
+    - ../../Template/MovieTemplate.yml
     - ../../Template/TagTemplate.yml
 
 AppBundle\Entity\Tag:
     tag-1 (extends tag-template):
         name: Some name # string
-        events: ["@event-1"]
+        movies: ["@movie-1"]
 
-AppBundle\Entity\Event:
-    event-1 (extends event-template):
+AppBundle\Entity\Movie:
+    movie-1 (extends movie-template):
+        tags: ["@tag-1"]

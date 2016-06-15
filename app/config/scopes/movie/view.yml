@@ -1,0 +1,40 @@
+scope:
+    id:
+    name:
+    group: # AppBundle\Entity\MovieGroup
+        id:
+        name:
+
+    tags: # AppBundle\Entity\Tag
+        id:
+        name:
+
+    articles: # AppBundle\Entity\Article
+        id:
+        type:
+        name:
+        publishAt:
+
+    sessions: # AppBundle\Entity\Session
+        id:
+        name:
+
+    comments: # AppBundle\Entity\MovieComment
+        id:
+        body:
+        publish:
+        createdAt:
+        author: # UserBundle\Entity\User
+            id:
+            username:
+            lastname:
+            firstname:
+
+        images: # AppBundle\Entity\Image
+            id:
+            name:
+            image:
+
+    detail: # AppBundle\Entity\MovieDetail
+        id:
+        body: # text

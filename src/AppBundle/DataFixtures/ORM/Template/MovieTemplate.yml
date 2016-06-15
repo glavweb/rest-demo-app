@@ -1,0 +1,3 @@
+AppBundle\Entity\Movie:
+    movie-template (template):
+        name: Some name # string

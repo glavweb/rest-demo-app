@@ -1,8 +1,16 @@
-# Learn more about services, parameters and containers at
-# http://symfony.com/doc/current/book/service_container.html
-parameters:
-#    parameter_name: value
-
 services:
-    jms_serializer.naming_strategy:
-        class: 'JMS\Serializer\Naming\IdenticalPropertyNamingStrategy'
+    filter.configurator:
+        class: AppBundle\Filter\Configurator
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@security.token_storage"
+            - "@security.authorization_checker"
+
+        tags:
+            - { name: kernel.event_listener, event: kernel.request }
+
+    create_movie_comment_form:
+        class: AppBundle\Form\CreateMovieCommentType
+        arguments: ["@security.token_storage", "@security.authorization_checker"]
+        tags:
+            - {name: form.type}

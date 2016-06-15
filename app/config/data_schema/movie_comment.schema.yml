@@ -1,0 +1,32 @@
+schema:
+    class: AppBundle\Entity\MovieComment
+    db_driver: orm
+    glavweb_security: false
+#    conditions: ["{% if not is_granted('ROLE_MOVIE_COMMENT_LIST') %}{{alias}}.publish = true{%if userId is not null %} OR {{alias}}.author = {{userId}}{% endif %}{% endif %}"]
+    properties:
+        id: # integer
+        body: # text
+        publish: # boolean
+        createdAt: # datetime
+
+        author: # UserBundle\Entity\User
+            join: left
+            properties:
+                id: # integer
+                username: # string
+                lastname: # string
+                firstname: # string
+                avatar: # string
+
+        movie: # AppBundle\Entity\Movie
+            join: left
+            properties:
+                id: # integer
+                name: # string
+
+        images: # AppBundle\Entity\Image
+            join: left
+            properties:
+                id: # integer
+                name: # string
+                image: # string

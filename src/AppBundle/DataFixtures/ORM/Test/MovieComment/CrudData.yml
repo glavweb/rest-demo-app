@@ -1,0 +1,25 @@
+include:
+    - ../../Template/MovieTemplate.yml
+    - ../../Template/ImageTemplate.yml
+    - ../../Template/MovieCommentTemplate.yml
+
+AppBundle\Entity\MovieComment:
+    movie-comment-1 (extends movie-comment-template):
+        body: Some body # text
+        publish: true # boolean
+        createdAt: <(new \DateTime('2016-06-09 17:33'))> # datetime
+        author: "@user-1"
+        movie: "@movie-1"
+        images: ["@image-1"]
+
+AppBundle\Entity\Movie:
+    movie-1 (extends movie-template):
+
+AppBundle\Entity\Image:
+    image-1 (extends image-template):
+        author: "@user-1"
+        image: <test_image('jpeg', 'web\test\uploads\images', 'test_image.jpg')> # string
+
+    image-2 (extends image-template):
+        author: "@user-1"
+        image: <test_image('jpeg', 'web\test\uploads\images', 'test_image_2.jpg')> # string

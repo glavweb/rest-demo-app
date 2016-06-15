@@ -15,3 +15,25 @@ web_profiler:
 swiftmailer:
     disable_delivery: true
 
+doctrine:
+    dbal:
+        dbname: "%database_name_test%"
+
+vich_uploader:
+    mappings:
+        user_avatar:
+            uri_prefix:         /test/uploads/users
+            upload_destination: "%kernel.root_dir%/../web/test/uploads/users"
+            namer:              vich_uploader.namer_uniqid
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+
+        image:
+            uri_prefix:         /test/uploads/images
+            upload_destination: "%kernel.root_dir%/../web/test/uploads/images"
+            namer:              vich_uploader.namer_uniqid
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+

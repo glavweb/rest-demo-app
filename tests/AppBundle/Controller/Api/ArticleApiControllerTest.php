@@ -1,46 +1,45 @@
 <?php
 
+/*
+ * This file is part of the "rest demo app" package.
+ *
+ * (c) GLAVWEB <info@glavweb.ru>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Tests\AppBundle\Controller\Api;
 
-use Codeception\Util\JsonType;
-use Glavweb\RestBundle\Dts\Dts;
-use Glavweb\RestBundle\Dts\DtsYamlLoader;
 use Glavweb\RestBundle\Test\RestTestCase;
+use Glavweb\RestBundle\Test\Handler\ListFilterCaseHandler;
 use AppBundle\Entity\Article;
-use Symfony\Component\Config\FileLocator;
 
 /**
  * Class ArticleApiControllerTest
- * @package AppBundle\Tests\Controller\Api
+ *
+ * @author Andrey Nilov <nilov@glavweb.ru>
  */
 class ArticleApiControllerTest extends RestTestCase
 {
-    /**
-     * @var bool
-     */
-    protected $useStored = true;
-
     /**
      * @param array  $fixtureFiles
      * @param bool   $append
      * @param bool|  $useCache
      * @param string $fixtureCacheKey
-     * @param string $username
-     * @param string $password
      * @return mixed
      */
-    protected function loadFixturesAndAuthenticate($fixtureFiles = [], $append = false, $useCache = true, $fixtureCacheKey = '', $username = 'admin', $password = 'qwerty')
+    protected function loadTestFixtures($fixtureFiles = [], $append = false, $useCache = true, $fixtureCacheKey = '')
     {
-        $fixtureFiles = array_merge([], $fixtureFiles);
+        $fixtureFiles = array_merge([
+            '@UserBundle/DataFixtures/ORM/Base/UserData.yml'
+        ], $fixtureFiles);
 
         if ($useCache) {
             $objects = $this->loadCachedFixtureFiles($fixtureFiles, $fixtureCacheKey, $append);
         } else {
             $objects = $this->loadFixtureFiles($fixtureFiles, $append);
         }
-
-        $authenticator = new Authenticator($this->client, $username, $password);
-        $this->authenticate($authenticator, $useCache);
 
         return $objects;
     }
@@ -51,21 +50,20 @@ class ArticleApiControllerTest extends RestTestCase
     public function testGetArticle()
     {
         /** @var Article $article */
-        $objects = $this->loadFixturesAndAuthenticate(['@AppBundle/DataFixtures/ORM/Test/Article/CrudData.yml']);
+        $objects = $this->loadTestFixtures(['@AppBundle/DataFixtures/ORM/Test/Article/CrudData.yml']);
         $article = $objects['article-1'];
 
-        $guesser = $this->getContainer()->get('glavweb_rest.test.view_action_guesser')
-            ->setModel($article)
-            ->setRoute('api_article_get_article', ['article' => $article->getId()])
-            ->setSkipValues([
-                'image',
-                'imageMobile',
-                'createdAt',
-                'galleryItems'
-            ])
-        ;
+        $this->restItemTestCase('/api/articles/' .  $article->getId(), [                                    
+            'type' => 'news',                                    
+            'name' => 'Some name',                                    
+            'body' => 'Some body',                                    
+            'publish' => 1,                                    
+            'publishAt' => (new \DateTime('2016-06-15 06:12'))->format('c'),
+        ]);
 
-        $this->assertViewRestActionByGuesser($guesser);
+        $this->restScopeTestCase('/api/articles/' .  $article->getId(), [
+            'view' => $this->getScopeConfig('article/view.yml')
+        ]);
     }
 
     /**
@@ -73,33 +71,42 @@ class ArticleApiControllerTest extends RestTestCase
      */
     public function testGetArticles()
     {
-        /** @var Article $article */
-        $objects = $this->loadFixturesAndAuthenticate(['@AppBundle/DataFixtures/ORM/Test/Article/CrudData.yml']);
-        $article = $objects['article-1'];
+        $objects = $this->loadTestFixtures(['@AppBundle/DataFixtures/ORM/Test/Article/CrudData.yml']);
 
-        $guesser = $this->getContainer()->get('glavweb_rest.test.list_action_guesser')
-            ->setModels([
-                'article-1' => $objects['article-1'],
-                'article-2' => $objects['article-2'],
-            ])
-            ->setRoute('api_article_get_articles')
-            ->setSkipValues([
-                'image',
-                'imageMobile',
-            ])
-            ->setFilters([
-                'name' => ['=Some name 1', 'article-1'],
-                'slug' => ['=Some slug 2', 'article-2'],
-                'lead' => '=Some lead',
-                'body' => '=Some body',
-                'type' => '=article',
-                'view' => '=panel_default',
-                'font' => '=playfair',
-                'color' => '=cyan',
-                'isPublish' => '=1'
-            ])
-        ;
+        // Test scope
+        $this->restScopeTestCase('/api/articles', [
+            'list' => $this->getScopeConfig('article/list.yml')
+        ], true);
 
-        $this->assertListRestActionByGuesser($guesser);
+        // Test filters
+        $listFilterCaseHandler = new ListFilterCaseHandler([
+            'article-1' => $objects['article-1']
+        ]);
+        
+        $listFilterCaseHandler->addCase('type', '=news', 'article-1', true);
+        $listFilterCaseHandler->addCase('name', '=Some name', 'article-1', true);
+        $listFilterCaseHandler->addCase('body', '=Some body', 'article-1', true);
+        $listFilterCaseHandler->addCase('publish', '=1', 'article-1', true);
+        $listFilterCaseHandler->addCase('publishAt', '=2016-06-15 06:12', 'article-1', true);
+
+        $this->restListFilterTestCase('/api/articles', $listFilterCaseHandler->getCases());
     }
+
+    /**
+     * Test types of article
+     */
+    public function testGetConstantType()
+    {
+        $this->loadTestFixtures(['@AppBundle/DataFixtures/ORM/Test/Article/CrudData.yml']);
+
+        $this->sendQueryRestRequest('/api/articles/constant/type');
+        $this->assertStatusCode(200, $this->client);
+
+        $this->assertDataContains($this->getResponseData(), [
+            'News' => 'news',
+            'Photo report' => 'photo_report',
+            'Article' => 'article',
+        ]);
+    }
+
 }

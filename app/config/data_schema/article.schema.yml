@@ -1,15 +1,16 @@
 schema:
     class: AppBundle\Entity\Article
+    db_driver: orm
+    glavweb_security: false
     properties:
         id: # integer
+        type: # ArticleType
         name: # string
-        slug: # string
         body: # text
-        countEvents: # integer
         publish: # boolean
         publishAt: # datetime
 
-        events: # AppBundle\Entity\Event
+        movies: # AppBundle\Entity\Movie
             join: left
             properties:
                 id: # integer

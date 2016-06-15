@@ -1,0 +1,29 @@
+filter:
+    label_name: Name
+    label_image: Image
+    label_updated_at: Updated at
+    label_author: Author
+
+list:
+    label__action: Action
+    label_name: Name
+    label_image: Image
+    label_updated_at: Updated at
+    label_author: Author
+
+form:
+    label_name: Name
+    label_image: Image
+    label_updated_at: Updated at
+    label_author: Author
+    label_image_remove: Remove image
+    image_not_loaded: Not loaded
+
+
+dashboard:
+    label_image: Images
+
+breadcrumb:
+    link_image_list: Images
+    link_image_create: Create
+    link_image_delete: Delete

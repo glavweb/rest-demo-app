@@ -2,6 +2,7 @@ sonata_admin:
     options:
         title_mode: single_text
     title: Admin Site
+    show_mosaic_button: false
 
     templates:
         layout:  sonata_admin_layout.html.twig
@@ -16,7 +17,7 @@ sonata_admin:
                 roles: [ROLE_SONATA_ADMIN]
 
     security:
-        handler: sonata.admin.security.handler.role
+        handler: glavweb_security.admin_security_handler_role
         information:
             EDIT:   [EDIT]
             LIST:   [LIST]

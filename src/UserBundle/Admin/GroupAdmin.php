@@ -1,8 +1,17 @@
 <?php
 
+/*
+ * This file is part of the "rest demo app" package.
+ *
+ * (c) GLAVWEB <info@glavweb.ru>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace UserBundle\Admin;
 
-use Glavweb\RestBundle\Form\SecurityRolesType;
+use Glavweb\SecurityBundle\Form\SecurityRolesType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -10,7 +19,8 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 
 /**
  * Class GroupAdmin
- * @package UserBundle\Admin
+ *
+ * @author Andrey Nilov <nilov@glavweb.ru>
  */
 class GroupAdmin extends AbstractAdmin
 {
@@ -29,20 +39,28 @@ class GroupAdmin extends AbstractAdmin
     protected $baseRouteName = 'group';
 
     /**
+     * The number of result to display in the list.
+     *
+     * @var int
+     */
+    protected $maxPerPage = 20;
+
+    /**
+     * Default values to the datagrid.
+     *
      * @var array
      */
-    protected $listModes = [
-        'list' => [
-            'class' => 'fa fa-list fa-fw',
-        ]
+    protected $datagridValues = [
+        '_page'       => 1,
+        '_per_page'   => 20,
     ];
 
     /**
+     * Predefined per page options.
+     *
      * @var array
      */
-    protected $formOptions = [
-        'validation_groups' => 'Registration',
-    ];
+    protected $perPageOptions = [20, 40, 60, 120, 180];
 
     /**
      * {@inheritdoc}

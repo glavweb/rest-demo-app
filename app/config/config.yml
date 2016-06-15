@@ -68,7 +68,7 @@ twig:
     form_themes:
         - 'SonataCoreBundle:Form:datepicker.html.twig'
         - 'GlavwebCoreBundle:Form:fields.html.twig'
-        - 'GlavwebRestBundle:Form:fields.html.twig'
+        - 'GlavwebSecurityBundle:Form:fields.html.twig'
 
     globals:
         made_in_link: "%made_in_link%"
@@ -101,6 +101,12 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
         naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+
+        filters:
+            movie_comment_filter:
+                class:   AppBundle\Filter\MovieCommentFilter
+                enabled: true
+
 
 # Swiftmailer Configuration
 swiftmailer:

@@ -11,3 +11,7 @@ fos_rest:
             forms: true
     view:
         view_response_listener: force
+
+    exception:
+        codes:
+            'Doctrine\ORM\NoResultException': 404

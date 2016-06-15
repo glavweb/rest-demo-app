@@ -1,0 +1,6 @@
+scope:
+    id: # integer
+    type: # ArticleType
+    name: # string
+    publish: # boolean
+    publishAt: # datetime

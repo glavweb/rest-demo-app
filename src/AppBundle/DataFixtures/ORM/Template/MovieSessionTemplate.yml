@@ -1,0 +1,3 @@
+AppBundle\Entity\MovieSession:
+    movie-session-template (template):
+        name: Some name # string

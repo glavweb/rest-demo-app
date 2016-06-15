@@ -1,19 +1,15 @@
 include:
-    - ../../Template/EventTemplate.yml
+    - ../../Template/MovieTemplate.yml
     - ../../Template/ArticleTemplate.yml
 
 AppBundle\Entity\Article:
     article-1 (extends article-template):
-        type: photo_report # ArticleType(news, photo_report, article)
+        type: news # ArticleType(news, photo_report, article)
         name: Some name # string
-        slug: Some slug # string
         body: Some body # text
-        countEvents: 416 # integer
-        publish: false # boolean
-        image: Some image # string
-        updatedAt: <(new \DateTime('2016-05-27 20:52'))> # datetime
-        publishAt: <(new \DateTime('2016-05-26 21:02'))> # datetime
-        events: ["@event-1"]
+        publish: true # boolean
+        publishAt: <(new \DateTime('2016-06-15 06:12'))> # datetime
+        movies: ["@movie-1"]
 
-AppBundle\Entity\Event:
-    event-1 (extends event-template):
+AppBundle\Entity\Movie:
+    movie-1 (extends movie-template):

@@ -1,0 +1,4 @@
+scope:
+    id: # integer
+    name: # string
+    image: # string

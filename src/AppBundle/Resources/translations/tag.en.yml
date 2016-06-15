@@ -1,0 +1,17 @@
+filter:
+    label_name: Name
+
+list:
+    label__action: Action
+    label_name: Name
+
+form:
+    label_name: Name
+
+dashboard:
+    label_tag: Tags
+
+breadcrumb:
+    link_tag_list: Tags
+    link_tag_create: Create
+    link_tag_delete: Delete

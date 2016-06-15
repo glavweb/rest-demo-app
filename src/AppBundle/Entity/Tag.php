@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Glavweb RestDemoBundle package.
+ * This file is part of the "rest demo app" package.
  *
- * (c) Andrey Nilov <nilov@glavweb.ru>
+ * (c) GLAVWEB <info@glavweb.ru>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -13,22 +13,32 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Glavweb\SecurityBundle\Mapping\Annotation as GlavwebSecurity;
+use Glavweb\RestBundle\Mapping\Annotation as RestExtra;
 
 /**
  * Tag
  *
  * @author Andrey Nilov <nilov@glavweb.ru>
- * @package Glavweb\RestDemoBundle
  *
  * @ORM\Table(name="tags")
  * @ORM\Entity
+ *
+ * @GlavwebSecurity\Access(
+ *     name = "Tag",
+ *     baseRole="ROLE_TAG_%s",
+ * )
+ *
+ * @RestExtra\Rest(
+ *     methods={"list", "view"}
+ * )
  */
 class Tag
 {
     /**
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer", options={"comment": "ID"})
+     * @ORM\Column(name="id", type="integer", options={"comment": "Tag ID"})
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
@@ -37,23 +47,31 @@ class Tag
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255, options={"comment": "Название"})
+     * @ORM\Column(name="name", type="string", length=255, options={"comment": "Name"})
      */
     private $name;
 
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="Event", mappedBy="tags")
+     * @ORM\ManyToMany(targetEntity="Movie", mappedBy="tags")
      */
-    private $events;
+    private $movies;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->events = new ArrayCollection();
+        $this->movies = new ArrayCollection();
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getName() ?: 'n/a';
     }
 
     /**
@@ -91,36 +109,36 @@ class Tag
     }
 
     /**
-     * Add event
+     * Add movie
      *
-     * @param Event $event
+     * @param Movie $movie
      *
      * @return Tag
      */
-    public function addEvent(Event $event)
+    public function addMovie(Movie $movie)
     {
-        $this->events[] = $event;
+        $this->movies[] = $movie;
 
         return $this;
     }
 
     /**
-     * Remove event
+     * Remove movie
      *
-     * @param Event $event
+     * @param Movie $movie
      */
-    public function removeEvent(Event $event)
+    public function removeMovie(Movie $movie)
     {
-        $this->events->removeElement($event);
+        $this->movies->removeElement($movie);
     }
 
     /**
-     * Get events
+     * Get movies
      *
      * @return ArrayCollection
      */
-    public function getEvents()
+    public function getMovies()
     {
-        return $this->events;
+        return $this->movies;
     }
 }

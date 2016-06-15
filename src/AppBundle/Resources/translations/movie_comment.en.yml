@@ -1,0 +1,29 @@
+filter:
+    label_body: Body
+    label_publish: Is publish
+    label_author: Author
+    label_movie: Movie
+
+list:
+    label__action: Action
+    label_body: Body
+    label_publish: Is publish
+    label_created_at: Created At
+    label_author: Author
+    label_movie: Movie
+
+form:
+    label_body: Body
+    label_publish: Is publish
+    label_created_at: Created At
+    label_author: Author
+    label_movie: Movie
+    label_images: Image List
+
+dashboard:
+    label_movie_comment: Movie Comments
+
+breadcrumb:
+    link_movie_comment_list: Movie Comments
+    link_movie_comment_create: Create
+    link_movie_comment_delete: Delete

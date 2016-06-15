@@ -1,0 +1,10 @@
+scope:
+    id: # integer
+    publish: # boolean
+    createdAt: # datetime
+    author: # UserBundle\Entity\User
+        id:
+    movie: # AppBundle\Entity\Movie
+        id:
+    images: # AppBundle\Entity\Image
+        id:

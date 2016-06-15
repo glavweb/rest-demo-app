@@ -1,0 +1,10 @@
+{% extends 'SonataAdminBundle:CRUD:list_string.html.twig' %}
+
+{% block field %}
+    {% if value is not empty %}
+        {% set uploaderHelper = admin.configurationPool.container.get('vich_uploader.templating.helper.uploader_helper') %}
+        <img src="{{ uploaderHelper.asset(object, 'imageFile') }}" style="max-height:50px;">
+    {% else %}
+        Not uploaded
+    {% endif %}
+{% endblock %}

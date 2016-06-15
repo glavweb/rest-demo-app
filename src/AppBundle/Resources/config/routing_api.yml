@@ -1,3 +1,27 @@
 app_article_api:
-    type:     rest
+    type:     annotation
     resource: "@AppBundle/Controller/Api/ArticleApiController.php"
+
+app_image_api:
+    type:     annotation
+    resource: "@AppBundle/Controller/Api/ImageApiController.php"
+
+app_movie_api:
+    type:     annotation
+    resource: "@AppBundle/Controller/Api/MovieApiController.php"
+
+app_movie_comment_api:
+    type:     annotation
+    resource: "@AppBundle/Controller/Api/MovieCommentApiController.php"
+
+app_movie_group_api:
+    type:     annotation
+    resource: "@AppBundle/Controller/Api/MovieGroupApiController.php"
+
+app_movie_session_api:
+    type:     annotation
+    resource: "@AppBundle/Controller/Api/MovieSessionApiController.php"
+
+app_tag_api:
+    type:     annotation
+    resource: "@AppBundle/Controller/Api/TagApiController.php"

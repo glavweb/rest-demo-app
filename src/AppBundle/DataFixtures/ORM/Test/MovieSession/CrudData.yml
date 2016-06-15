@@ -1,0 +1,11 @@
+include:
+    - ../../Template/MovieTemplate.yml
+    - ../../Template/MovieSessionTemplate.yml
+
+AppBundle\Entity\MovieSession:
+    movie-session-1 (extends movie-session-template):
+        name: Some name # string
+        movie: "@movie-1"
+
+AppBundle\Entity\Movie:
+    movie-1 (extends movie-template):

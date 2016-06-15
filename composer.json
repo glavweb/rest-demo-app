@@ -1,8 +1,8 @@
 {
-    "name": "glavweb/symfony-rest",
+    "name": "glavweb/rest-demo-app",
     "license": "MIT",
     "type": "project",
-    "description": "The \"Symfony Standard Edition\" distribution for REST API",
+    "description": "The REST API Demo Application",
     "autoload": {
         "psr-4": { "": "src/" },
         "classmap": [ "app/AppKernel.php", "app/AppCache.php" ]
@@ -42,9 +42,10 @@
         "nelmio/cors-bundle": "~1.4",
         "nelmio/alice": "~2.1",
         "hautelook/alice-bundle": "~1.2",
-        "glavweb/core-bundle": "~1.0",
-        "glavweb/rest-bundle": "~1.0",
-        "glavweb/datagrid-bundle": "~1.0",
+        "glavweb/core-bundle": "~1.1",
+        "glavweb/security-bundle": "~0.1",
+        "glavweb/rest-bundle": "~1.1",
+        "glavweb/datagrid-bundle": "~1.1",
         "glavweb/action-bundle": "~1.0"
     },
     "require-dev": {

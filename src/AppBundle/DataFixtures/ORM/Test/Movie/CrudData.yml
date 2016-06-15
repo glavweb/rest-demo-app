@@ -1,0 +1,52 @@
+include:
+    - ../../Template/MovieGroupTemplate.yml
+    - ../../Template/TagTemplate.yml
+    - ../../Template/ImageTemplate.yml
+    - ../../Template/ArticleTemplate.yml
+    - ../../Template/MovieSessionTemplate.yml
+    - ../../Template/MovieTemplate.yml
+    - ../../Template/MovieCommentTemplate.yml
+    - ../../Template/MovieDetailTemplate.yml
+    - ../../Template/MovieTemplate.yml
+
+AppBundle\Entity\Movie:
+    movie-1 (extends movie-template):
+        name: Some name # string
+        group: "@movie-group-1"
+        tags: ["@tag-1"]
+        articles: ["@article-1"]
+        sessions: ["@movie-session-1"]
+        comments: ["@movie-comment-1"]
+        detail: "@movie-detail-1"
+
+AppBundle\Entity\MovieGroup:
+    movie-group-1 (extends movie-group-template):
+
+AppBundle\Entity\Tag:
+    tag-1 (extends tag-template):
+
+AppBundle\Entity\Article:
+    article-1 (extends article-template):
+
+AppBundle\Entity\MovieSession:
+    movie-session-1 (extends movie-session-template):
+        movie: "@movie-1"
+
+AppBundle\Entity\Movie:
+    movie-1 (extends movie-template):
+
+AppBundle\Entity\Image:
+    image-1 (extends image-template):
+        name: Some name # string
+        image: <test_image('jpeg', 'web\test\uploads\images', 'test_image.jpg')> # string
+        updatedAt: <(new \DateTime('2016-06-09 09:18'))> # datetime
+        author: "@user-1"
+
+AppBundle\Entity\MovieComment:
+    movie-comment-1 (extends movie-comment-template):
+        author: "@user-1"
+        movie: "@movie-1"
+        images: ["@image-1"]
+
+AppBundle\Entity\MovieDetail:
+    movie-detail-1 (extends movie-detail-template):

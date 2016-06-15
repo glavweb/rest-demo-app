@@ -1,3 +1,0 @@
-AppBundle\Entity\EventDetail:
-    event-detail-template (template):
-        body: Some body # text

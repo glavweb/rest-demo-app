@@ -1,0 +1,17 @@
+filter:
+    label_name: Name
+
+list:
+    label__action: Action
+    label_name: Name
+
+form:
+    label_name: Name
+
+dashboard:
+    label_movie_group: Movie Groups
+
+breadcrumb:
+    link_movie_group_list: Movie Groups
+    link_movie_group_create: Create
+    link_movie_group_delete: Delete

@@ -1,0 +1,5 @@
+AppBundle\Entity\Image:
+    image-template (template):
+        name: Some name # string
+        image: Some image # string
+        updatedAt: <(new \DateTime('2016-06-09 09:18'))> # datetime

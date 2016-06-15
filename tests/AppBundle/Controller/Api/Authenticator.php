@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the "rest demo app" package.
+ *
+ * (c) GLAVWEB <info@glavweb.ru>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Tests\AppBundle\Controller\Api;
 
 use Glavweb\RestBundle\Test\Authenticate\AuthenticateResponse;
@@ -8,7 +17,8 @@ use Symfony\Component\BrowserKit\Client;
 
 /**
  * Class Authenticator
- * @package AppBundle\Tests\Controller\Api
+ *
+ * @author Andrey Nilov <nilov@glavweb.ru>
  */
 class Authenticator implements AuthenticatorInterface
 {
@@ -54,15 +64,14 @@ class Authenticator implements AuthenticatorInterface
         $this->client->request('POST', self::SING_IN_URI, [
             'username' => $this->username,
             'password' => $this->password
-        ], array(), array('HTTP_ACCEPT' => 'application/json'));
+        ], [], ['HTTP_ACCEPT' => 'application/json']);
         $loginResponse = json_decode($this->client->getResponse()->getContent());
-        var_dump($loginResponse); echo __CLASS__ . ': ' . __LINE__; exit;
 
-        $authenticateHeaders = array(
-            'token'    => (isset($loginResponse->apiToken) ? $loginResponse->apiToken : null),
-            'expireAt' => (isset($loginResponse->createdAt) ? $loginResponse->createdAt : null),
-            'username' => (isset($loginResponse->login) ? $loginResponse->login : null)
-        );
+        $authenticateHeaders = [
+            'HTTP_TOKEN'    => (isset($loginResponse->Token) ? $loginResponse->Token : null),
+            'HTTP_EXPIREAT' => (isset($loginResponse->ExpireAt) ? $loginResponse->ExpireAt : null),
+            'HTTP_USERNAME' => (isset($loginResponse->Username) ? $loginResponse->Username : null)
+        ];
 
         return new AuthenticateResponse([], $authenticateHeaders);
     }

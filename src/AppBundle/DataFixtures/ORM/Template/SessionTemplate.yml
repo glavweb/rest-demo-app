@@ -1,3 +1,0 @@
-AppBundle\Entity\Session:
-    session-template (template):
-        name: Some name # string

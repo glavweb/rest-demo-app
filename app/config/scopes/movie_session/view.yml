@@ -1,0 +1,5 @@
+scope:
+    id: # integer
+    name: # string
+    movie: # AppBundle\Entity\Movie
+        id:

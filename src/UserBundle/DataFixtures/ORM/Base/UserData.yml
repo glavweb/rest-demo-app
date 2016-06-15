@@ -1,5 +1,5 @@
 UserBundle\Entity\User:
-    user-admin:
+    user-1:
         username: admin
         firstname: John
         lastname: Doe
@@ -7,3 +7,12 @@ UserBundle\Entity\User:
         plainPassword: qwerty
         enabled: true
         roles: [ROLE_SUPER_ADMIN]
+
+    user-2:
+        username: user
+        firstname: User
+        lastname: User
+        email: user@testmail.com
+        plainPassword: qwerty
+        enabled: true
+        roles: [ROLE_USER]

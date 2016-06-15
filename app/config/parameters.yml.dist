@@ -4,7 +4,8 @@
 parameters:
     database_host:      127.0.0.1
     database_port:      ~
-    database_name:      symfony
+    database_name:      rest_demo_app
+    database_name_test: rest_demo_app_test
     database_user:      root
     database_password:  ~
     # You should uncomment this if you want use pdo_sqlite
@@ -19,3 +20,4 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     made_in_link: http://glavweb.ru
+    http_host: ~

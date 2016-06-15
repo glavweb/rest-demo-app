@@ -1,33 +1,155 @@
 include:
-    - ../../../../UserBundle/DataFixtures/ORM/Base/UserData.yml
-    - ../Template/EventGroupTemplate.yml
+    - ../Template/MovieTemplate.yml
+    - ../Template/MovieGroupTemplate.yml
+    - ../Template/MovieDetailTemplate.yml
+    - ../Template/MovieCommentTemplate.yml
     - ../Template/TagTemplate.yml
     - ../Template/ArticleTemplate.yml
-    - ../Template/SessionTemplate.yml
-    - ../Template/EventDetailTemplate.yml
-    - ../Template/EventTemplate.yml
+    - ../Template/MovieSessionTemplate.yml
 
-AppBundle\Entity\Event:
-    event-1 (extends event-template):
-        name: Some name # string
-        eventGroup: "@event-group-1"
-        tags: ["@tag-1"]
-        articles: ["@article-1"]
-        sessions: ["@session-1"]
-        eventDetail: "@event-detail-1"
+UserBundle\Entity\Group:
+    admin:
+        __construct: [Admin]
+        roles:
+            - ROLE_SUPER_ADMIN
+            - ROLE_ADMIN
 
-AppBundle\Entity\EventGroup:
-    event-group-1 (extends event-group-template):
+    moderator:
+        __construct: [Moderator]
+        roles:
+            - ROLE_MODERATOR
+            - ROLE_MOVIE_COMMENT_CREATE
+            - ROLE_MOVIE_COMMENT_LIST
+            - ROLE_MOVIE_COMMENT_VIEW
+            - ROLE_MOVIE_COMMENT_EDIT
+            - ROLE_MOVIE_COMMENT_DELETE
+            - ROLE_MOVIE_LIST
+            - ROLE_MOVIE_VIEW
+            - ROLE_IMAGE_CREATE
+            - ROLE_IMAGE_LIST
+            - ROLE_IMAGE_VIEW
+            - ROLE_IMAGE_EDIT
+            - ROLE_IMAGE_DELETE
+            - ROLE_ARTICLE_LIST
+            - ROLE_ARTICLE_VIEW
+            - ROLE_MOVIE_DETAIL_LIST
+            - ROLE_MOVIE_DETAIL_VIEW
+            - ROLE_MOVIE_GROUP_LIST
+            - ROLE_MOVIE_GROUP_VIEW
+            - ROLE_MOVIE_SESSION_LIST
+            - ROLE_MOVIE_SESSION_VIEW
+            - ROLE_TAG_LIST
+            - ROLE_TAG_VIEW
+
+    user:
+        __construct: [User]
+        roles:
+            - ROLE_USER
+            - ROLE_MOVIE_COMMENT_CREATE
+            - ROLE_MOVIE_COMMENT_LIST
+            - ROLE_MOVIE_COMMENT_VIEW__OWNER
+            - ROLE_MOVIE_COMMENT_EDIT__OWNER
+            - ROLE_MOVIE_COMMENT_DELETE__OWNER
+            - ROLE_MOVIE_LIST
+            - ROLE_MOVIE_VIEW
+            - ROLE_IMAGE_CREATE
+            - ROLE_IMAGE_LIST
+            - ROLE_IMAGE_VIEW__OWNER
+            - ROLE_IMAGE_EDIT__OWNER
+            - ROLE_IMAGE_DELETE__OWNER
+            - ROLE_ARTICLE_LIST
+            - ROLE_ARTICLE_VIEW
+            - ROLE_MOVIE_DETAIL_LIST
+            - ROLE_MOVIE_DETAIL_VIEW
+            - ROLE_MOVIE_GROUP_LIST
+            - ROLE_MOVIE_GROUP_VIEW
+            - ROLE_MOVIE_SESSION_LIST
+            - ROLE_MOVIE_SESSION_VIEW
+            - ROLE_TAG_LIST
+            - ROLE_TAG_VIEW
+
+UserBundle\Entity\User:
+    user-1:
+        username: admin
+        firstname: John
+        lastname: Doe
+        email: john-doe@testmail.com
+        plainPassword: qwerty
+        enabled: true
+        roles: [ROLE_SUPER_ADMIN]
+        groups: ["@admin"]
+
+    user-2:
+        username: moderator
+        firstname: Moderator
+        lastname: Moderator
+        email: moderator@testmail.com
+        plainPassword: qwerty
+        enabled: true
+        groups: ["@moderator"]
+
+    user-3:
+        username: user-1
+        firstname: User 1
+        lastname: User 1
+        email: user-1@testmail.com
+        plainPassword: qwerty
+        enabled: true
+        groups: ["@user"]
+
+    user-4:
+        username: user-2
+        firstname: User 2
+        lastname: User 2
+        email: user-2@testmail.com
+        plainPassword: qwerty
+        enabled: true
+        groups: ["@user"]
+
+AppBundle\Entity\Movie:
+    movie-entity-{1..30} (extends movie-template):
+        name: <sentence(3)> # string
+        group: "@movie-group-<numberBetween(1, 5)>"
+        tags: <numberBetween(1, 5)>x @tag-*
+        detail: "@movie-detail-<current()>"
+
+AppBundle\Entity\MovieDetail:
+    movie-detail-{1..30} (extends movie-detail-template):
+        body: <text()>
+
+AppBundle\Entity\MovieGroup:
+    movie-group-{1..5} (extends movie-group-template):
+        name: Group <current()>
 
 AppBundle\Entity\Tag:
-    tag-1 (extends tag-template):
+    tag-{1..15} (extends tag-template):
+        name: Tag <current()>
 
 AppBundle\Entity\Article:
-    article-{1..10} (extends article-template):
-        name: Article <current()>
+    article-{1..50} (extends article-template):
+        name: <sentence(3)>
+        type: <randomElement(['news', 'photo_report', 'article'])>
+        movies: <numberBetween(1, 5)>x @movie-entity-*
+        body: <text()>
+        publish: <boolean()>
+        publishAt: <dateTimeBetween('-100 days', 'now')>
 
-AppBundle\Entity\Session:
-    session-1 (extends session-template):
+AppBundle\Entity\MovieComment:
+    movie-comment-{1..150} (extends movie-comment-template):
+        body: <sentence(5)>
+        movie: "@movie-entity-<numberBetween(1, 30)>"
+        author: "@user-<numberBetween(2, 4)>"
+        publish: <boolean()>
+        createdAt: <dateTimeBetween('-100 days', 'now')>
 
-AppBundle\Entity\EventDetail:
-    event-detail-1 (extends event-detail-template):
+AppBundle\Entity\MovieSession:
+    movie-session-{1..500} (extends movie-session-template):
+        name: Session <current()>
+        movie: "@movie-entity-<numberBetween(1, 30)>"
+
+AppBundle\Entity\Image:
+    image-{1..15}:
+        name: <sentence(3)>
+        image: <image('web/uploads/images', 120, 120, null, false)>
+        author: "@user-<numberBetween(2, 4)>"
+        movieComments: <numberBetween(1, 2)>x @movie-comment-*

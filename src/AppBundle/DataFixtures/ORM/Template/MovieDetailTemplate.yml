@@ -1,0 +1,3 @@
+AppBundle\Entity\MovieDetail:
+    movie-detail-template (template):
+        body: Some body # text

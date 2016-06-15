@@ -1,0 +1,3 @@
+AppBundle\Entity\MovieGroup:
+    movie-group-template (template):
+        name: Some name # string

@@ -1,0 +1,8 @@
+schema:
+    class: AppBundle\Entity\Image
+    db_driver: orm
+    glavweb_security: false
+    properties:
+        id: # integer
+        name: # string
+        image: # string

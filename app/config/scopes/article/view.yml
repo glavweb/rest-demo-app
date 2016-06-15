@@ -1,0 +1,10 @@
+scope:
+    id: # integer
+    type: # ArticleType
+    name: # string
+    body: # text
+    publish: # boolean
+    publishAt: # datetime
+    movies: # AppBundle\Entity\Movie
+        id:
+        name:

@@ -1,0 +1,28 @@
+filter:
+    label_name: Name
+    label_group: Group
+    label_tags: Tags
+    label_articles: Articles
+
+list:
+    label__action: Action
+    label_name: Name
+    label_group: Group
+    label_tags: Tags
+
+form:
+    label_name: Name
+    label_group: Group
+    label_tags: Tags
+    label_articles: Articles
+    label_sessions: Session List
+    label_comments: Comment List
+    label_detail: Body
+
+dashboard:
+    label_movie: Movies
+
+breadcrumb:
+    link_movie_list: Movies
+    link_movie_create: Create
+    link_movie_delete: Delete

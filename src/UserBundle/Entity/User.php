@@ -1,18 +1,27 @@
 <?php
 
+/*
+ * This file is part of the "rest demo app" package.
+ *
+ * (c) GLAVWEB <info@glavweb.ru>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace UserBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Class User
- * @package UserBundle\Entity
+ *
+ * @author Andrey Nilov <nilov@glavweb.ru>
  *
  * @ORM\Table(name="users")
  * @ORM\Entity
@@ -79,14 +88,14 @@ class User extends BaseUser
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created_at", type="datetime", nullable=false, options={"comment": "Created at"})
+     * @ORM\Column(name="created_at", type="datetime", nullable=false, options={"comment": "Created At"})
      */
     protected $createdAt;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="updated_at", type="datetime", nullable=false, options={"comment": "Updated at"})
+     * @ORM\Column(name="updated_at", type="datetime", nullable=false, options={"comment": "Updated At"})
      */
     protected $updatedAt;
 
@@ -96,6 +105,13 @@ class User extends BaseUser
      * @ORM\ManyToMany(targetEntity="UserBundle\Entity\Group", inversedBy="users")
      */
     protected $groups;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\MovieComment", mappedBy="author")
+     */
+    protected $movieComments;
 
     /**
      * @return string
@@ -135,7 +151,7 @@ class User extends BaseUser
     }
 
     /**
-     * @param File|UploadedFile $file
+     * @param File $file
      */
     public function setAvatarFile(File $file = null)
     {
@@ -320,5 +336,39 @@ class User extends BaseUser
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Add movieComment
+     *
+     * @param \AppBundle\Entity\MovieComment $movieComment
+     *
+     * @return User
+     */
+    public function addMovieComment(\AppBundle\Entity\MovieComment $movieComment)
+    {
+        $this->movieComments[] = $movieComment;
+
+        return $this;
+    }
+
+    /**
+     * Remove movieComment
+     *
+     * @param \AppBundle\Entity\MovieComment $movieComment
+     */
+    public function removeMovieComment(\AppBundle\Entity\MovieComment $movieComment)
+    {
+        $this->movieComments->removeElement($movieComment);
+    }
+
+    /**
+     * Get movieComments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMovieComments()
+    {
+        return $this->movieComments;
     }
 }

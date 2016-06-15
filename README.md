@@ -4,7 +4,7 @@ REST Demo Application
 ### Get the application using composer:
 
 ```bash
-composer create-project glavweb/rest-demo-app "1.0"
+composer create-project glavweb/rest-demo-app
 ```
 
 ### Execute migrations:

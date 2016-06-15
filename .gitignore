@@ -22,5 +22,11 @@
 !/web/uploads/content/
 /web/uploads/content/*
 !/web/uploads/content/.gitkeep
+!/web/uploads/images/
+/web/uploads/images/*
+!/web/uploads/images/.gitkeep
+!/web/uploads/users/
+/web/uploads/users/*
+!/web/uploads/users/.gitkeep
 /web/media/
 /composer.phar
